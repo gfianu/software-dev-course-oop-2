@@ -17,10 +17,11 @@ public class Main {
             System.out.println("--------------------------------");
             System.out.println("1. Enter Normal Sale");
             System.out.println("2. Enter Custom Sale");
-            System.out.println("3. Display Inventory");
-            System.out.println("4. Display Money");
-            System.out.println("5. Buy Supplies");
-            System.out.println("6. Exit");
+            System.out.println("3. Enter Discount Sale");
+            System.out.println("4. Display Inventory");
+            System.out.println("5. Display Money");
+            System.out.println("6. Buy Supplies");
+            System.out.println("7. Exit");
 
             String choice = scanner.nextLine();
 
@@ -29,12 +30,14 @@ public class Main {
             } else if (choice.equals("2")) {
                 enterCustomSale();
             } else if (choice.equals("3")) {
-                displayInventory();
+                enterDiscountSale();
             } else if (choice.equals("4")) {
-                displayMoney();
+                displayInventory();
             } else if (choice.equals("5")) {
-                buySupplies();
+                displayMoney();
             } else if (choice.equals("6")) {
+                buySupplies();
+            } else if (choice.equals("7")) {
                 System.out.println("Goodbye!");
                 break;
             } else {
@@ -73,6 +76,22 @@ public class Main {
         for (int i = 0; i < numLemonades; i++) {
             if (lemonadeStand.sellLemonade(lemons, sugar, ice)) {
                 System.out.println("Lemonade sold!");
+            } else {
+                System.out.println("Not enough supplies to sell lemonade.");
+            }
+        }
+    }
+
+    public static void enterDiscountSale() {
+        System.out.println("Enter the discount percentage (0-100):");
+        double discountPercent = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter the number of lemonades to sell:");
+
+        int numLemonades = Integer.parseInt(scanner.nextLine());
+
+        for (int i = 0; i < numLemonades; i++) {
+            if (lemonadeStand.sellLemonade(discountPercent)) {
+                System.out.println("Discounted lemonade sold!");
             } else {
                 System.out.println("Not enough supplies to sell lemonade.");
             }
